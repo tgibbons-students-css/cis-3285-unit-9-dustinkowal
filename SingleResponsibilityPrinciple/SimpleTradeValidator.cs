@@ -40,6 +40,18 @@ namespace SingleResponsibilityPrinciple
                 return false;
             }
 
+            int tradeNum = System.Convert.ToInt32(tradeData[1].ToString());
+            if (tradeNum < 1000)
+            {
+                logger.LogWarning("Trade is outside of bounds: '{0}'", tradeData[1]);
+                return false;
+            }
+            if (tradeNum > 100000)
+            {
+                logger.LogWarning("Trade is outside of bounds: '{0}'", tradeData[1]);
+                return false;
+            }
+
             return true;
         }
     }
