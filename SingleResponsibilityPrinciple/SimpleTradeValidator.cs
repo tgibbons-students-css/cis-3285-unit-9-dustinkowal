@@ -16,39 +16,39 @@ namespace SingleResponsibilityPrinciple
         {
             if (tradeData.Length != 3)
             {
-                logger.LogWarning("Line malformed. Only {0} field(s) found.", tradeData.Length);
+                logger.LogMessage("WARN", "Line malformed. Only {0} field(s) found.", tradeData.Length);
                 return false;
             }
 
             if (tradeData[0].Length != 6)
             {
-                logger.LogWarning("Trade currencies malformed: '{0}'", tradeData[0]);
+                logger.LogMessage("WARN", "Trade currencies malformed: '{0}'", tradeData[0]);
                 return false;
             }
 
             int tradeAmount;
             if (!int.TryParse(tradeData[1], out tradeAmount))
             {
-                logger.LogWarning("Trade not a valid integer: '{0}'", tradeData[1]);
+                logger.LogMessage("WARN", "Trade not a valid integer: '{0}'", tradeData[1]);
                 return false;
             }
 
             decimal tradePrice;
             if (!decimal.TryParse(tradeData[2], out tradePrice))
             {
-                logger.LogWarning("Trade price not a valid decimal: '{0}'", tradeData[2]);
+                logger.LogMessage("WARN", "Trade price not a valid decimal: '{0}'", tradeData[2]);
                 return false;
             }
 
             int tradeNum = System.Convert.ToInt32(tradeData[1].ToString());
             if (tradeNum < 1000)
             {
-                logger.LogWarning("Trade is outside of bounds: '{0}'", tradeData[1]);
+                logger.LogMessage("WARN", "Trade is outside of bounds: '{0}'", tradeData[1]);
                 return false;
             }
             if (tradeNum > 100000)
             {
-                logger.LogWarning("Trade is outside of bounds: '{0}'", tradeData[1]);
+                logger.LogMessage("WARN", "Trade is outside of bounds: '{0}'", tradeData[1]);
                 return false;
             }
 
